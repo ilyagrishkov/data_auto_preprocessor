@@ -2,6 +2,7 @@
 
 This project is an attempt to simplify and automate data preprocessing for the future use by the machine learnign algorithm. 
 
+[![CircleCI](https://circleci.com/gh/ilyagrishkov/data_auto_preprocessor/tree/master.svg?style=svg)](https://circleci.com/gh/ilyagrishkov/data_auto_preprocessor/tree/master)
 ## Features
 
 v1.0.0
