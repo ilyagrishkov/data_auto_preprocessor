@@ -2,7 +2,7 @@ from preprocessor import null_value_cleaner
 
 
 def test_nnd():
-    assert null_value_cleaner.nnd() == ('remove', [], []), 'Remove approach with no rows neither to keep nor remove'
+    assert null_value_cleaner.nnd() == ('remove', [2], []), 'Remove approach with no rows neither to keep nor remove'
 
 
 # if __name__ == '__main__':
