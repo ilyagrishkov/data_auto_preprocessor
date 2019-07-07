@@ -17,7 +17,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            pipenv run python preprocessor/null_value_cleaner.py test
+            pytest
       - store_test_results:
           path: test-results
 
