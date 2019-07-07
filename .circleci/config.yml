@@ -1,0 +1,5 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/data_auto_preprocessor
