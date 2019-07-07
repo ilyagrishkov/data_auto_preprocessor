@@ -19,6 +19,9 @@ jobs:
           command: |
             pipenv install pytest
             pipenv run pytest
+      - store_artifacts:
+          path: /code/test-results
+          destination: prefix
       - store_test_results:
           path: test-results
 
