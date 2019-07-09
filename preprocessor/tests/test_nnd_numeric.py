@@ -9,8 +9,8 @@ from preprocessor import null_value_cleaner as nvc
 
 class NumericNNDTest(unittest.TestCase):
     """
-    A tests class for NND method.
-    """
+       A tests class for NND method.
+       """
 
     numeric_two_null = {'Feature1': [12, 23, np.nan, 22], 'Feature2': [20, np.nan, 19, 18],
                         'Feature3': [34, 84, 10, 20]}
@@ -42,7 +42,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(numeric_one_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove')))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True)))
 
     def test_nnd_remove_two_null_rows(self):
         """
@@ -55,7 +55,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove')))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True)))
 
     def test_nnd_mean_two_null_rows_mean_approach(self):
         """
@@ -69,7 +69,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='mean')))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, strategy='mean')))
 
     def test_nnd_median_two_null_rows_median_approach(self):
         """
@@ -83,7 +83,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='median')))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, strategy='median')))
 
     def test_nnd_keep_one_row(self):
         """
@@ -96,8 +96,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove',
-                                                    keep_rows=[1])))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True, keep_rows=[1])))
 
     def test_nnd_keep_two_rows(self):
         """
@@ -111,8 +110,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_three_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove',
-                                                    keep_rows=[1, 2])))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True, keep_rows=[1, 2])))
 
     def test_nnd_remove_one_row(self):
         """
@@ -125,7 +123,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='median',
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, strategy='median',
                                                     remove_rows=[1])))
 
     def test_nnd_remove_two_rows(self):
@@ -139,7 +137,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_three_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='median',
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, strategy='median',
                                                     remove_rows=[1, 2])))
 
     def test_nnd_keep_remove_one_row_keep_conflict(self):
@@ -154,7 +152,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove', keep_rows=[1],
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True, keep_rows=[1],
                                                     remove_rows=[1])))
 
     def test_nnd_keep_remove_two_row_keep_conflict(self):
@@ -170,8 +168,8 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove',
-                                                    keep_rows=[1, 2], remove_rows=[1])))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True, keep_rows=[1, 2],
+                                                    remove_rows=[1])))
 
     def test_nnd_keep_remove_two_row_remove_conflict(self):
         """
@@ -186,7 +184,7 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove', keep_rows=[1],
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True, keep_rows=[1],
                                                     remove_rows=[1, 2])))
 
     def test_nnd_keep_one_row_approach_mean(self):
@@ -200,8 +198,8 @@ class NumericNNDTest(unittest.TestCase):
         initial_data = pd.DataFrame(self.numeric_two_null)
         correct_data = pd.DataFrame(correct_numeric_no_null)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove', keep_rows=[1],
-                                                    keep_rows_approach='mean')))
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True, keep_rows=[1],
+                                                    strategy='mean')))
 
     def test_nnd_median_two_null_rows_no_reindex(self):
         """
@@ -217,7 +215,7 @@ class NumericNNDTest(unittest.TestCase):
         new_index = pd.Series([0, 3])
         correct_data = correct_data.set_index([new_index], drop=True)
 
-        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, approach='remove',
+        self.assertTrue(correct_data.equals(nvc.nnd(initial_data, drop=True,
                                                     reindex=False)))
 
 
