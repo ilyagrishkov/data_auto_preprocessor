@@ -1,3 +1,8 @@
+"""
+Module that is used to remove or replace all rows with null values in them.
+"""
+# pylint: disable=R0913
+# pylint: disable=W0612
 import pandas as pd
 import numpy as np
 
@@ -24,8 +29,8 @@ def __find_average(data_frame: pd.DataFrame) -> (dict, dict):
     return mean, median
 
 
-def nnd(data_frame: pd.DataFrame, approach='median', keep_rows=None, keep_rows_approach='median', remove_rows=None,
-        reindex=True) -> pd.DataFrame:
+def nnd(data_frame: pd.DataFrame, approach='median', keep_rows=None, keep_rows_approach='median',
+        remove_rows=None, reindex=True) -> pd.DataFrame:
     """A method to deal with missing values in the dataset.
 
     No-null-dataset(NND) is a method that accepts a dataset with null values
@@ -68,6 +73,7 @@ def nnd(data_frame: pd.DataFrame, approach='median', keep_rows=None, keep_rows_a
                 elif approach == 'median' or keep_rows_approach == 'median':
                     data_with_explicit_drop.at[index, column] = median[column]
 
-    no_null_dataset = data_with_explicit_drop.reset_index(drop=True) if reindex else data_with_explicit_drop
+    no_null_dataset = data_with_explicit_drop.reset_index(drop=True) if reindex \
+        else data_with_explicit_drop
 
     return no_null_dataset
