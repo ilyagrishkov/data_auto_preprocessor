@@ -9,7 +9,8 @@ jobs:
           name: install dependencies
           command: |
             sudo pip install pipenv
-            pip install -r requirements.txt
+            pipenv install -r requirements.txt
+            pipenv install pytest
   test:
     docker:
       - image: circleci/python:3.7
@@ -18,8 +19,6 @@ jobs:
       - run:
           name: run tests
           command: |
-            pipenv install -r requirements.txt
-            pipenv install pytest
             pipenv run pytest
 
 workflows:
@@ -27,5 +26,7 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
 
