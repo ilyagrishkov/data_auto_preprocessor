@@ -19,6 +19,7 @@ jobs:
           name: run tests
           command: |
             pipenv install pytest
+            pipenv shell
             pipenv run pytest
 
 workflows:
