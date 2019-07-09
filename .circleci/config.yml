@@ -30,6 +30,7 @@ jobs:
       - run:
           name: run tests
           command: |
+            pipenv install -r requirements.txt
             pipenv install pylint
             pipenv run pylint preprocessor
 
@@ -41,6 +42,7 @@ jobs:
       - run:
           name: run tests
           command: |
+            pipenv install -r requirements.txt
             pipenv install pylint
             pipenv run pylint tests
 
