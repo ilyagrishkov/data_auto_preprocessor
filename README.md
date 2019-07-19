@@ -5,7 +5,7 @@
 [![Python-3.7](https://img.shields.io/badge/python-3.7-blue.svg?style=for-the-badge&logo=appveyor)](https://img.shields.io/badge/python-3.7-blue.svg)
 
 ## Project description
-This project is an attempt to simplify and automate data preprocessing for the future use by the machine learnign algorithm. 
+This project is an attempt to simplify and automate data preprocessing for the future use by the machine learning algorithm. 
 
 
 ## Features
