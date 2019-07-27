@@ -9,8 +9,8 @@ from preprocessor import null_value_cleaner as nvc
 
 class NumericNNDTest(unittest.TestCase):
     """
-       A tests class for NND method.
-       """
+    A tests class for NND method.
+    """
 
     numeric_two_null = {'Feature1': [12, 23, np.nan, 22], 'Feature2': [20, np.nan, 19, 18],
                         'Feature3': [34, 84, 10, 20]}
