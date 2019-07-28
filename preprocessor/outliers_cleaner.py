@@ -48,5 +48,5 @@ def remove_outliers(dataset: pd.DataFrame, strategy='Z', reindex=True, threshold
 
     no_outliers_dataset = no_outliers_dataset.reset_index(
         drop=True) if reindex else no_outliers_dataset
-    print(no_outliers_dataset)
+
     return no_outliers_dataset
