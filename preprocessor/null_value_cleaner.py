@@ -32,7 +32,7 @@ def __find_average(data_frame: pd.DataFrame) -> (dict, dict, dict):
     return mean, median, mode
 
 
-def nnd(data_frame: pd.DataFrame, strategy='median', keep_rows=None, remove_rows=None,
+def nnd(data_frame, strategy='median', keep_rows=None, remove_rows=None,
         reindex=True, drop=False) -> pd.DataFrame:
     """A method to deal with missing values in the dataset.
 
@@ -46,7 +46,7 @@ def nnd(data_frame: pd.DataFrame, strategy='median', keep_rows=None, remove_rows
         otherwise it has no effect. keep_rows has a priority over remove_rows.
         :param remove_rows: Specify the rows to remove. Can be used with all methods.
         :param reindex: A new dataset will create new indexes if True.
-        :param drop: removes all the rows that contain null values, except for those in keep_rows
+        :param drop: Removes all the rows that contain null values, except for those in keep_rows
 
         :return: Dataset with no null values
     """
@@ -73,10 +73,10 @@ def nnd(data_frame: pd.DataFrame, strategy='median', keep_rows=None, remove_rows
 
                     if strategy == 'mean':
                         data_after_drop.at[index, column] = mean[column]
-                    elif strategy == 'median':
-                        data_after_drop.at[index, column] = median[column]
                     elif strategy == 'mode':
                         data_after_drop.at[index, column] = mode[column][0]
+                    else:
+                        data_after_drop.at[index, column] = median[column]
 
                 else:
                     data_after_drop.at[index, column] = mode[column][0]
